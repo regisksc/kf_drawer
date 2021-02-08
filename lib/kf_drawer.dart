@@ -151,7 +151,7 @@ class _KFDrawerState extends State<KFDrawer> with TickerProviderStateMixin {
     if (widget.disableContentTap != null) {
       _disableContentTap = widget.disableContentTap;
     }
-    animationController = AnimationController(duration: const Duration(milliseconds: 300), vsync: this);
+    animationController = AnimationController(duration: const Duration(milliseconds: 300), TickerProvider: this);
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController)
       ..addListener(() {
         setState(() {
@@ -173,10 +173,7 @@ class _KFDrawerState extends State<KFDrawer> with TickerProviderStateMixin {
     return Listener(
       onPointerDown: (PointerDownEvent event) {
         if (_disableContentTap) {
-          if (_menuOpened && event.position.dx / MediaQuery
-              .of(context)
-              .size
-              .width >= _drawerWidth) {
+          if (_menuOpened && event.position.dx / MediaQuery.of(context).size.width >= _drawerWidth) {
             _close();
           } else {
             setState(() {
@@ -185,19 +182,14 @@ class _KFDrawerState extends State<KFDrawer> with TickerProviderStateMixin {
           }
         } else {
           setState(() {
-            _isDraggingMenu = (_menuOpened && event.position.dx / MediaQuery
-                .of(context)
-                .size
-                .width >= _drawerWidth) || (!_menuOpened && event.position.dx <= 8.0);
+            _isDraggingMenu = (_menuOpened && event.position.dx / MediaQuery.of(context).size.width >= _drawerWidth) ||
+                (!_menuOpened && event.position.dx <= 8.0);
           });
         }
       },
       onPointerMove: (PointerMoveEvent event) {
         if (_isDraggingMenu) {
-          animationController.value = event.position.dx / MediaQuery
-              .of(context)
-              .size
-              .width;
+          animationController.value = event.position.dx / MediaQuery.of(context).size.width;
         }
       },
       onPointerUp: (PointerUpEvent event) {
@@ -220,10 +212,7 @@ class _KFDrawerState extends State<KFDrawer> with TickerProviderStateMixin {
           Transform.scale(
             scale: scaleAnimation.value,
             child: Transform.translate(
-              offset: Offset((MediaQuery
-                  .of(context)
-                  .size
-                  .width * _drawerWidth) * animation.value, 0.0),
+              offset: Offset((MediaQuery.of(context).size.width * _drawerWidth) * animation.value, 0.0),
               child: AbsorbPointer(
                 absorbing: _menuOpened && _disableContentTap,
                 child: Stack(
@@ -296,7 +285,6 @@ class _KFDrawer extends StatefulWidget {
 }
 
 class __KFDrawerState extends State<_KFDrawer> {
-
   var _padding = EdgeInsets.symmetric(vertical: 64.0);
 
   Widget _getMenu() {

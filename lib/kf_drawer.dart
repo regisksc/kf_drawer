@@ -151,7 +151,7 @@ class _KFDrawerState extends State<KFDrawer> with TickerProviderStateMixin {
     if (widget.disableContentTap != null) {
       _disableContentTap = widget.disableContentTap;
     }
-    animationController = AnimationController(duration: const Duration(milliseconds: 300), TickerProvider: this);
+    animationController = AnimationController(duration: const Duration(milliseconds: 300), vsync: this);
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController)
       ..addListener(() {
         setState(() {

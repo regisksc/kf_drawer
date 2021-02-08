@@ -130,27 +130,14 @@ class _KFDrawerState extends State<KFDrawer> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    if (widget.minScale != null) {
-      _minScale = widget.minScale;
-    }
-    if (widget.borderRadius != null) {
-      _borderRadius = widget.borderRadius;
-    }
-    if (widget.shadowOffset != null) {
-      _shadowOffset = widget.shadowOffset;
-    }
-    if (widget.shadowBorderRadius != null) {
-      _shadowBorderRadius = widget.shadowBorderRadius;
-    }
-    if (widget.drawerWidth != null) {
-      _drawerWidth = widget.drawerWidth;
-    }
-    if (widget.scrollable != null) {
-      _scrollable = widget.scrollable;
-    }
-    if (widget.disableContentTap != null) {
-      _disableContentTap = widget.disableContentTap;
-    }
+    if (widget.minScale != null) _minScale = widget.minScale;
+    if (widget.borderRadius != null) _borderRadius = widget.borderRadius;
+    if (widget.shadowOffset != null) _shadowOffset = widget.shadowOffset;
+    if (widget.shadowBorderRadius != null) _shadowBorderRadius = widget.shadowBorderRadius;
+    if (widget.drawerWidth != null) _drawerWidth = widget.drawerWidth;
+    if (widget.scrollable != null) _scrollable = widget.scrollable;
+    if (widget.disableContentTap != null) _disableContentTap = widget.disableContentTap;
+
     animationController = AnimationController(duration: const Duration(milliseconds: 300), vsync: this);
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController)
       ..addListener(() {
